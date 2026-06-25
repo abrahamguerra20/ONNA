@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONNA | Terapias de Sexualidad Consciente</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -184,6 +183,23 @@
             margin: 0 auto 40px auto;
         }
 
+        /* --- ESTILOS PARA IMÁGENES --- */
+        .imagen-elegante {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .imagen-elegante:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
         .manifiesto-texto h2 {
             font-size: 2.5rem;
             margin-bottom: 30px;
@@ -265,10 +281,9 @@
 
     <div class="manifiesto-linea"></div>
 
-<div class="manifiesto-imagen">
-    <!-- Asegúrate de que la ruta 'src' apunte a donde guardaste tu imagen -->
-    <img src="onna-arcilla-logo.jpg" alt="Escultura en arcilla de ONNA - Sexualidad sagrada" class="imagen-elegante">
-</div>
+    <section class="manifiesto" id="about">
+        <div class="manifiesto-imagen">
+            <img src="onna-arcilla-logo.jpg" alt="Escultura en arcilla de ONNA - Sexualidad sagrada" class="imagen-elegante">
         </div>
         <div class="manifiesto-texto">
             <h2>El origen de Onna</h2>
