@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONNA | Nuestras Experiencias y Terapias</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES Y BASE (Igual que en el Index) --- */
+        :root {
+            --color-vino: #2d0505;
+            --color-crema: #f4e4d7;
+            --color-bronce: #c5a085;
+            --font-titulos: 'Playfair Display', serif;
+            --font-cuerpo: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-vino);
+            color: var(--color-crema);
+            font-family: var(--font-cuerpo);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo { font-family: var(--font-titulos); font-weight: 400; }
+        a { color: var(--color-crema); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--color-bronce); }
+
+        /* --- NAVEGACIÓN --- */
+        /* Le damos un color de fondo sutil porque aquí no hay imagen de Hero detrás */
+        header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #240404; 
+            border-bottom: 1px solid rgba(197, 160, 133, 0.2);
+        }
+
+        .logo { font-size: 2.5rem; letter-spacing: 4px; color: var(--color-crema); position: relative; }
+        .logo::before { content: "✦"; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1rem; color: var(--color-bronce); }
+
+        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--color-bronce); transition: width 0.3s ease; }
+        nav a:hover::after { width: 100%; }
+
+        /* --- PÁGINA INTERNA: TERAPIAS --- */
+        .banner-interno {
+            width: 100%;
+            height: 40vh;
+            min-height: 300px;
+            object-fit: cover;
+            opacity: 0.85;
+            display: block;
+        }
+
+        .terapias-contenedor {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .titulo-seccion {
+            font-size: 3rem;
+            color: var(--color-bronce);
+            margin-bottom: 50px;
+            text-align: left;
+            line-height: 1.1;
+        }
+
+        .lista-terapias {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .terapia-item {
+            border-bottom: 1px solid rgba(197, 160, 133, 0.3);
+            padding-bottom: 25px;
+        }
+
+        .terapia-item h3 {
+            font-size: 1.5rem;
+            color: var(--color-crema);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terapia-item h3::after {
+            content: "✦";
+            font-size: 0.9rem;
+            color: var(--color-bronce);
+            opacity: 0.5;
+        }
+
+        .terapia-item p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(244, 228, 215, 0.8);
+        }
+
+        /* --- IMAGENES --- */
+        .imagen-elegante {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .imagen-elegante:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 20px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 20px; }
+            .terapias-contenedor { grid-template-columns: 1fr; padding: 60px 5%; gap: 40px; }
+            .titulo-seccion { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header>
+        <div class="logo">ONNA</div>
+        <nav>
+            <ul>
+                <!-- Nota cómo los enlaces ahora apuntan a las páginas HTML -->
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="terapias.html">Terapias</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BANNER DE LA PÁGINA -->
+    <img src="onna-banner-terapias.jpg" alt="El placer de sentir - ONNA" class="banner-interno">
+
+    <!-- CONTENIDO DE TERAPIAS -->
+    <section class="terapias-contenedor">
+        <div class="terapias-texto">
+            <h2 class="titulo-seccion">Nuestras<br><i>Experiencias</i></h2>
+            
+            <div class="lista-terapias">
+                <div class="terapia-item">
+                    <h3>Masterclass online</h3>
+                    <p>Espacios de formación accesibles, donde compartimos conocimiento sobre sexualidad consciente, energía vital, afectividad y creatividad.</p>
+                </div>
+                
+                <div class="terapia-item">
+                    <h3>Talleres presenciales</h3>
+                    <p>Experiencias vivenciales para reconectar con el cuerpo, las emociones y la pareja, en un entorno de confianza.</p>
+                </div>
+
+                <div class="terapia-item">
+                    <h3>Terapia individual</h3>
+                    <p>Procesos personalizados para sanar bloqueos, reconectar con la energía sexual y vivir la sexualidad desde un lugar más consciente.</p>
+                </div>
+
+                <div class="terapia-item">
+                    <h3>Terapia en pareja</h3>
+                    <p>Espacios para fortalecer la intimidad, mejorar la comunicación y reavivar el vínculo amoroso.</p>
+                </div>
+
+                <div class="terapia-item">
+                    <h3>Terapia con la niña interior</h3>
+                    <p>Acompañamiento profundo para sanar heridas emocionales que impactan la manera de relacionarnos y vivir la sexualidad.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="terapias-imagen">
+            <!-- Imagen de la arcilla sostenida en la mano -->
+            <img src="onna-arcilla-mano.jpg" alt="Terapia y reconexión corporal ONNA" class="imagen-elegante">
+        </div>
+    </section>
+
+</body>
+</html>
