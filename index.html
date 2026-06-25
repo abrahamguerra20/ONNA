@@ -3,41 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONNA | Sexualidad Consciente y Vitalidad</title>
+    <title>ONNA | Terapias de Sexualidad Consciente</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        /* Estilos críticos para la identidad de Onna */
-        body { background-color: #2d0505; color: #f4e4d7; font-family: 'Georgia', serif; margin: 0; }
-        .hero { text-align: center; padding: 100px 20px; border-bottom: 2px solid #c5a085; }
-        .nav-menu { text-align: center; padding: 20px; }
-        .nav-menu a { color: #c5a085; margin: 0 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
-        .intro-text { max-width: 800px; margin: 50px auto; padding: 20px; line-height: 1.8; }
+        /* --- VARIABLES DE MARCA --- */
+        :root {
+            --color-vino: #2d0505;
+            --color-crema: #f4e4d7;
+            --color-bronce: #c5a085;
+            --font-titulos: 'Playfair Display', serif;
+            --font-cuerpo: 'Montserrat', sans-serif;
+            --espacio-seccion: 120px;
+        }
+
+        /* --- RESET Y BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-vino);
+            color: var(--color-crema);
+            font-family: var(--font-cuerpo);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: var(--font-titulos);
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--color-crema);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-bronce);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: var(--color-crema);
+            position: relative;
+        }
+
+        /* Simulación de la estrella del logo */
+        .logo::before {
+            content: "✦";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: var(--color-bronce);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        /* Efecto hover minimalista */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-bronce);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, #3d0808 0%, var(--color-vino) 70%);
+        }
+
+        .hero-subtitle {
+            color: var(--color-bronce);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            max-width: 900px;
+        }
+
+        .hero h1 i {
+            color: var(--color-bronce);
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 50px;
+            color: rgba(244, 228, 215, 0.8);
+        }
+
+        .btn-primario {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--color-bronce);
+            font-family: var(--font-cuerpo);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--color-crema);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .btn-primario:hover {
+            background: var(--color-bronce);
+            color: var(--color-vino);
+        }
+
+        /* --- SECCIÓN MANIFIESTO / ABOUT --- */
+        .manifiesto {
+            padding: var(--espacio-seccion) 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .manifiesto-linea {
+            width: 1px;
+            height: 100px;
+            background-color: var(--color-bronce);
+            margin: 0 auto 40px auto;
+        }
+
+        .manifiesto-texto h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--color-bronce);
+        }
+
+        .manifiesto-texto p {
+            font-weight: 300;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: rgba(244, 228, 215, 0.9);
+        }
+
+        .acronimo {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .acronimo li {
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .acronimo strong {
+            font-family: var(--font-titulos);
+            font-size: 1.2rem;
+            color: var(--color-bronce);
+            margin-right: 10px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .manifiesto {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 80px 5%;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="nav-menu">
-        <a href="index.html">Inicio</a>
-        <a href="terapias.html">Terapias</a>
-        <a href="eventos.html">Eventos</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="blog.html">Blog</a>
-    </nav>
-
-    <header class="hero">
-        <h1>ONNA</h1>
-        <p>Una nueva forma de ver el placer</p>
+    <header>
+        <div class="logo">ONNA</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#terapias">Terapias</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="intro-text">
-        <h2>La sexualidad como fuerza vital</h2>
-        <p>En Onna, entendemos la sexualidad como el punto de partida de nuestra existencia[cite: 6]. No es algo que nos quita energía, es el lenguaje sagrado que conecta nuestro cuerpo, nuestra afectividad y nuestra capacidad creadora[cite: 5, 7].</p>
-        <p>Te invitamos a realizar un viaje hacia dentro para reconectar con tu energía y vivir de manera más consciente, plena y auténtica[cite: 15].</p>
+    <section class="hero" id="inicio">
+        <div class="hero-subtitle">Una nueva forma de ver el placer</div>
+        <h1>La sexualidad como <br><i>fuerza vital</i></h1>
+        <p class="hero-text">Un lenguaje sagrado que conecta el cuerpo, la afectividad y la creatividad. No la reprimimos, la honramos como el motor que nos impulsa a vivir.</p>
+        <a href="#terapias" class="btn-primario">Descubre tu energía</a>
     </section>
 
-    <footer style="text-align: center; padding: 40px;">
-        <p>¿Lista para comenzar? Escríbenos a: Onnaexperience@gmail.com</p>
-        <p>Instagram: @Onna.experience</p>
-    </footer>
+    <div class="manifiesto-linea"></div>
+
+    <section class="manifiesto" id="about">
+        <div class="manifiesto-imagen">
+            <!-- Espacio reservado para imagen conceptual (ej. luz, sombras corporales sutiles) -->
+            <div style="width: 100%; height: 500px; border: 1px solid rgba(197, 160, 133, 0.3); display: flex; justify-content: center; align-items: center; color: var(--color-bronce); font-family: var(--font-titulos);">
+                [ Fotografía Editorial / Minimalista ]
+            </div>
+        </div>
+        <div class="manifiesto-texto">
+            <h2>El origen de Onna</h2>
+            <p>Nació de la búsqueda por comprender la sexualidad desde un lugar más profundo. Detectamos que, muchas veces, la sexualidad es vista como algo que nos hace perder energía, cuando en realidad es la fuente misma de nuestra fuerza vital.</p>
+            <p>Creemos que todo en la vida se origina en la sexualidad: es el punto de partida de la existencia y un espacio donde se esconden valores que van mucho más allá del placer.</p>
+            
+            <ul class="acronimo">
+                <li><strong>O</strong> Orientación de la energía sexual y creativa.</li>
+                <li><strong>N</strong> Nacer: abrirse a una nueva manera de vivir.</li>
+                <li><strong>N</strong> Naturaleza del deseo auténtico.</li>
+                <li><strong>A</strong> Amar: abrazar el cuerpo y la energía.</li>
+            </ul>
+        </div>
+    </section>
 
 </body>
 </html>
