@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* --- VARIABLES Y BASE (Igual que en el Index) --- */
+        /* --- VARIABLES DE MARCA --- */
         :root {
             --color-vino: #2d0505;
             --color-crema: #f4e4d7;
@@ -19,7 +19,12 @@
             --font-cuerpo: 'Montserrat', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* --- RESET Y BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             background-color: var(--color-vino);
@@ -29,12 +34,22 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .logo { font-family: var(--font-titulos); font-weight: 400; }
-        a { color: var(--color-crema); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: var(--color-bronce); }
+        h1, h2, h3, .logo {
+            font-family: var(--font-titulos);
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--color-crema);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-bronce);
+        }
 
         /* --- NAVEGACIÓN --- */
-        /* Le damos un color de fondo sutil porque aquí no hay imagen de Hero detrás */
         header {
             padding: 30px 5%;
             display: flex;
@@ -42,82 +57,150 @@
             align-items: center;
             background-color: #240404; 
             border-bottom: 1px solid rgba(197, 160, 133, 0.2);
+            position: relative; /* Para que quede sobre la imagen */
+            z-index: 10;
         }
 
-        .logo { font-size: 2.5rem; letter-spacing: 4px; color: var(--color-crema); position: relative; }
-        .logo::before { content: "✦"; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1rem; color: var(--color-bronce); }
+        .logo {
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: var(--color-crema);
+            position: relative;
+        }
 
-        nav ul { list-style: none; display: flex; gap: 40px; }
-        nav a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; position: relative; }
-        nav a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--color-bronce); transition: width 0.3s ease; }
-        nav a:hover::after { width: 100%; }
+        .logo::before {
+            content: "✦";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: var(--color-bronce);
+        }
 
-        /* --- PÁGINA INTERNA: TERAPIAS --- */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-bronce);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- BANNER INTERNO SIN RECORTES --- */
+        .banner-contenedor {
+            width: 100%;
+            background-color: #1a0303; /* Fondo oscuro sutil por si la imagen tarda en cargar */
+            text-align: center;
+        }
+
         .banner-interno {
             width: 100%;
-            height: 40vh;
-            min-height: 300px;
-            object-fit: cover;
-            opacity: 0.85;
+            max-width: 1200px; /* Evita que se vea gigante en pantallas inmensas */
+            height: auto; /* Respeta la proporción original */
             display: block;
+            margin: 0 auto;
         }
 
+        /* --- CONTENEDOR PRINCIPAL TERAPIAS --- */
         .terapias-contenedor {
-            padding: 100px 10%;
+            padding: 80px 10%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            align-items: center;
+            align-items: start; /* Alinea los elementos arriba */
         }
 
         .titulo-seccion {
             font-size: 3rem;
             color: var(--color-bronce);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             text-align: left;
             line-height: 1.1;
         }
 
-        .lista-terapias {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+        /* --- ACORDEÓN INTERACTIVO --- */
+        .acordeon {
+            width: 100%;
         }
 
-        .terapia-item {
+        .acordeon-item {
             border-bottom: 1px solid rgba(197, 160, 133, 0.3);
-            padding-bottom: 25px;
         }
 
-        .terapia-item h3 {
-            font-size: 1.5rem;
+        .acordeon-boton {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
             color: var(--color-crema);
-            margin-bottom: 15px;
+            padding: 25px 0;
+            font-size: 1.4rem;
+            font-family: var(--font-titulos);
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: color 0.4s ease;
         }
 
-        .terapia-item h3::after {
-            content: "✦";
-            font-size: 0.9rem;
+        .acordeon-boton:hover, 
+        .acordeon-boton.activo {
             color: var(--color-bronce);
-            opacity: 0.5;
         }
 
-        .terapia-item p {
+        .icono-despliegue {
+            font-family: var(--font-cuerpo);
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--color-bronce);
+            transition: transform 0.4s ease;
+        }
+
+        .acordeon-boton.activo .icono-despliegue {
+            transform: rotate(45deg); /* Gira para formar una 'X' al abrir */
+        }
+
+        .acordeon-contenido {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .acordeon-texto {
             font-size: 1.05rem;
             font-weight: 300;
             color: rgba(244, 228, 215, 0.8);
+            padding-bottom: 25px; /* Espaciado dentro del despliegue */
+            line-height: 1.7;
         }
 
-        /* --- IMAGENES --- */
+        /* --- IMAGEN ESCULTURA --- */
         .imagen-elegante {
             width: 100%;
             max-width: 500px;
             height: auto;
             border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             transition: transform 0.6s ease, box-shadow 0.6s ease;
             display: block;
             margin: 0 auto;
@@ -132,8 +215,9 @@
         @media (max-width: 900px) {
             header { flex-direction: column; gap: 20px; }
             nav ul { flex-wrap: wrap; justify-content: center; gap: 20px; }
-            .terapias-contenedor { grid-template-columns: 1fr; padding: 60px 5%; gap: 40px; }
+            .terapias-contenedor { grid-template-columns: 1fr; padding: 60px 5%; gap: 60px; }
             .titulo-seccion { text-align: center; }
+            .acordeon-boton { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -144,7 +228,6 @@
         <div class="logo">ONNA</div>
         <nav>
             <ul>
-                <!-- Nota cómo los enlaces ahora apuntan a las páginas HTML -->
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="terapias.html">Terapias</a></li>
                 <li><a href="eventos.html">Eventos</a></li>
@@ -154,47 +237,98 @@
         </nav>
     </header>
 
-    <!-- BANNER DE LA PÁGINA -->
-    <img src="onna-banner-terapias.jpg" alt="El placer de sentir - ONNA" class="banner-interno">
+    <!-- BANNER SIN RECORTES -->
+    <div class="banner-contenedor">
+        <img src="onna-banner-terapias.jpg" alt="El placer de sentir - ONNA" class="banner-interno">
+    </div>
 
-    <!-- CONTENIDO DE TERAPIAS -->
+    <!-- CONTENIDO DE TERAPIAS CON ACORDEÓN -->
     <section class="terapias-contenedor">
         <div class="terapias-texto">
             <h2 class="titulo-seccion">Nuestras<br><i>Experiencias</i></h2>
             
-            <div class="lista-terapias">
-                <div class="terapia-item">
-                    <h3>Masterclass online</h3>
-                    <p>Espacios de formación accesibles, donde compartimos conocimiento sobre sexualidad consciente, energía vital, afectividad y creatividad.</p>
-                </div>
+            <div class="acordeon">
                 
-                <div class="terapia-item">
-                    <h3>Talleres presenciales</h3>
-                    <p>Experiencias vivenciales para reconectar con el cuerpo, las emociones y la pareja, en un entorno de confianza.</p>
+                <!-- Item 1 -->
+                <div class="acordeon-item">
+                    <button class="acordeon-boton">
+                        Masterclass online <span class="icono-despliegue">+</span>
+                    </button>
+                    <div class="acordeon-contenido">
+                        <p class="acordeon-texto">Espacios de formación accesibles, donde compartimos conocimiento sobre sexualidad consciente, energía vital, afectividad y creatividad.</p>
+                    </div>
                 </div>
 
-                <div class="terapia-item">
-                    <h3>Terapia individual</h3>
-                    <p>Procesos personalizados para sanar bloqueos, reconectar con la energía sexual y vivir la sexualidad desde un lugar más consciente.</p>
+                <!-- Item 2 -->
+                <div class="acordeon-item">
+                    <button class="acordeon-boton">
+                        Talleres presenciales <span class="icono-despliegue">+</span>
+                    </button>
+                    <div class="acordeon-contenido">
+                        <p class="acordeon-texto">Experiencias vivenciales para reconectar con el cuerpo, las emociones y la pareja, en un entorno de confianza.</p>
+                    </div>
                 </div>
 
-                <div class="terapia-item">
-                    <h3>Terapia en pareja</h3>
-                    <p>Espacios para fortalecer la intimidad, mejorar la comunicación y reavivar el vínculo amoroso.</p>
+                <!-- Item 3 -->
+                <div class="acordeon-item">
+                    <button class="acordeon-boton">
+                        Terapia individual <span class="icono-despliegue">+</span>
+                    </button>
+                    <div class="acordeon-contenido">
+                        <p class="acordeon-texto">Procesos personalizados para sanar bloqueos, reconectar con la energía sexual y vivir la sexualidad desde un lugar más consciente.</p>
+                    </div>
                 </div>
 
-                <div class="terapia-item">
-                    <h3>Terapia con la niña interior</h3>
-                    <p>Acompañamiento profundo para sanar heridas emocionales que impactan la manera de relacionarnos y vivir la sexualidad.</p>
+                <!-- Item 4 -->
+                <div class="acordeon-item">
+                    <button class="acordeon-boton">
+                        Terapia en pareja <span class="icono-despliegue">+</span>
+                    </button>
+                    <div class="acordeon-contenido">
+                        <p class="acordeon-texto">Espacios para fortalecer la intimidad, mejorar la comunicación y reavivar el vínculo amoroso.</p>
+                    </div>
                 </div>
+
+                <!-- Item 5 -->
+                <div class="acordeon-item">
+                    <button class="acordeon-boton">
+                        Terapia con la niña interior <span class="icono-despliegue">+</span>
+                    </button>
+                    <div class="acordeon-contenido">
+                        <p class="acordeon-texto">Acompañamiento profundo para sanar heridas emocionales que impactan la manera de relacionarnos y vivir la sexualidad.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
         <div class="terapias-imagen">
-            <!-- Imagen de la arcilla sostenida en la mano -->
             <img src="onna-arcilla-mano.jpg" alt="Terapia y reconexión corporal ONNA" class="imagen-elegante">
         </div>
     </section>
 
+    <!-- SCRIPT PARA LA INTERACTIVIDAD DEL ACORDEÓN -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botones = document.querySelectorAll(".acordeon-boton");
+
+            botones.forEach(boton => {
+                boton.addEventListener("click", function() {
+                    // Alternar la clase activo para cambiar colores y girar el ícono
+                    this.classList.toggle("activo");
+
+                    // Seleccionar el contenedor de texto justo debajo del botón
+                    const contenido = this.nextElementSibling;
+
+                    // Si está abierto, lo cerramos; si está cerrado, le damos la altura de su contenido
+                    if (contenido.style.maxHeight) {
+                        contenido.style.maxHeight = null;
+                    } else {
+                        contenido.style.maxHeight = contenido.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
