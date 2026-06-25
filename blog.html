@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONNA | Diario y Reflexiones</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE MARCA --- */
+        :root {
+            --color-vino: #2d0505;
+            --color-crema: #f4e4d7;
+            --color-bronce: #c5a085;
+            --font-titulos: 'Playfair Display', serif;
+            --font-cuerpo: 'Montserrat', sans-serif;
+        }
+
+        /* --- RESET Y BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-vino);
+            color: var(--color-crema);
+            font-family: var(--font-cuerpo);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: var(--font-titulos);
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--color-crema);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-bronce);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #240404; 
+            border-bottom: 1px solid rgba(197, 160, 133, 0.2);
+            position: relative; 
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: var(--color-crema);
+            position: relative;
+        }
+
+        .logo::before {
+            content: "✦";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: var(--color-bronce);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-bronce);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- CABECERA DEL BLOG --- */
+        .header-pagina {
+            text-align: center;
+            padding: 80px 5% 60px;
+        }
+
+        .header-pagina h1 {
+            font-size: 3.5rem;
+            color: var(--color-bronce);
+            margin-bottom: 20px;
+        }
+
+        .header-pagina p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(244, 228, 215, 0.8);
+        }
+
+        /* --- ARTÍCULO DESTACADO --- */
+        .blog-contenedor {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+        }
+
+        .articulo-destacado {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+            border-bottom: 1px solid rgba(197, 160, 133, 0.2);
+            padding-bottom: 60px;
+        }
+
+        .destacado-imagen {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.6s ease;
+        }
+
+        .destacado-imagen:hover {
+            transform: scale(1.02);
+        }
+
+        .articulo-meta {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-bronce);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .articulo-destacado h2 {
+            font-size: 2.8rem;
+            color: var(--color-crema);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .articulo-extracto {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(244, 228, 215, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .btn-leer {
+            display: inline-block;
+            font-family: var(--font-cuerpo);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-bronce);
+            border-bottom: 1px solid var(--color-bronce);
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-leer:hover {
+            color: var(--color-crema);
+            border-color: var(--color-crema);
+        }
+
+        /* --- CUADRÍCULA DE ARTÍCULOS --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+
+        .articulo-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-imagen-contenedor {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .card-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .articulo-card:hover .card-imagen {
+            transform: scale(1.05);
+        }
+
+        .articulo-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--color-crema);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 20px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 20px; }
+            .articulo-destacado { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .destacado-imagen { height: 300px; }
+            .btn-leer { margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header>
+        <div class="logo">ONNA</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="terapias.html">Terapias</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CABECERA -->
+    <section class="header-pagina">
+        <h1>Diario <i>ONNA</i></h1>
+        <p>Reflexiones, sabiduría y herramientas para acompañarte en tu viaje hacia una sexualidad consciente y conectada.</p>
+    </section>
+
+    <!-- CONTENEDOR DEL BLOG -->
+    <section class="blog-contenedor">
+
+        <!-- ARTÍCULO DESTACADO (Última publicación) -->
+        <article class="articulo-destacado">
+            <!-- Usamos la imagen horizontal ancha como portada destacada -->
+            <img src="onna-banner-terapias.jpg" alt="El origen de la fuerza vital" class="destacado-imagen">
+            
+            <div class="destacado-texto">
+                <span class="articulo-meta">✦ Filosofía | 12 Noviembre</span>
+                <h2>Más allá del placer: La sexualidad como fuerza vital</h2>
+                <!-- Texto extraído de tu manifiesto -->
+                <p class="articulo-extracto">Onna nació de la búsqueda por comprender la sexualidad desde un lugar más profundo[cite: 1]. Detectamos que muchas veces es vista como algo que nos hace perder energía, cuando en realidad es el punto de partida de la existencia y un espacio donde se esconden valores inmensos[cite: 1].</p>
+                <a href="#" class="btn-leer">Leer artículo completo</a>
+            </div>
+        </article>
+
+        <!-- ARTÍCULOS ANTERIORES -->
+        <div class="blog-grid">
+            
+            <!-- Artículo 2 -->
+            <article class="articulo-card">
+                <div class="card-imagen-contenedor">
+                    <img src="onna-arcilla-mano.jpg" alt="El cuerpo como templo" class="card-imagen">
+                </div>
+                <span class="articulo-meta">✦ Cuerpo | 28 Octubre</span>
+                <h3>El lenguaje sagrado de la afectividad</h3>
+                <p class="articulo-extracto">Es un lenguaje sagrado que conecta el cuerpo, la afectividad y la creatividad[cite: 1]. Aprender a escuchar este idioma nos permite reconectar con nuestra esencia.</p>
+                <a href="#" class="btn-leer">Leer artículo completo</a>
+            </article>
+
+            <!-- Artículo 3 -->
+            <article class="articulo-card">
+                <div class="card-imagen-contenedor">
+                    <img src="onna-arcilla-logo.jpg" alt="Arte y Sexualidad" class="card-imagen">
+                </div>
+                <span class="articulo-meta">✦ Autodescubrimiento | 15 Octubre</span>
+                <h3>El origen: Orientar la energía creativa</h3>
+                <p class="articulo-extracto">La letra 'O' en ONNA representa la orientación de la energía sexual y creativa hacia nuestra forma de relacionarnos con las caricias y el amor[cite: 1].</p>
+                <a href="#" class="btn-leer">Leer artículo completo</a>
+            </article>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
