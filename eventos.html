@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONNA | Eventos y Encuentros</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE MARCA --- */
+        :root {
+            --color-vino: #2d0505;
+            --color-crema: #f4e4d7;
+            --color-bronce: #c5a085;
+            --font-titulos: 'Playfair Display', serif;
+            --font-cuerpo: 'Montserrat', sans-serif;
+        }
+
+        /* --- RESET Y BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-vino);
+            color: var(--color-crema);
+            font-family: var(--font-cuerpo);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: var(--font-titulos);
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--color-crema);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-bronce);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #240404; 
+            border-bottom: 1px solid rgba(197, 160, 133, 0.2);
+            position: relative; 
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: var(--color-crema);
+            position: relative;
+        }
+
+        .logo::before {
+            content: "✦";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: var(--color-bronce);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-bronce);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- CABECERA DE LA PÁGINA --- */
+        .header-pagina {
+            text-align: center;
+            padding: 80px 5% 60px;
+        }
+
+        .header-pagina h1 {
+            font-size: 3.5rem;
+            color: var(--color-bronce);
+            margin-bottom: 20px;
+        }
+
+        .header-pagina p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(244, 228, 215, 0.8);
+        }
+
+        /* --- LISTA DE EVENTOS --- */
+        .agenda-contenedor {
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .evento-card {
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(197, 160, 133, 0.15);
+            padding: 40px;
+            border-radius: 8px;
+            background: linear-gradient(145deg, rgba(45, 5, 5, 1) 0%, rgba(36, 4, 4, 1) 100%);
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .evento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 133, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Bloque de la fecha */
+        .evento-fecha {
+            flex: 0 0 150px;
+            text-align: center;
+            border-right: 1px solid rgba(197, 160, 133, 0.2);
+            padding-right: 40px;
+            margin-right: 40px;
+        }
+
+        .evento-fecha .dia {
+            font-family: var(--font-titulos);
+            font-size: 4rem;
+            color: var(--color-bronce);
+            line-height: 1;
+        }
+
+        .evento-fecha .mes {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            color: var(--color-crema);
+        }
+
+        /* Información del evento */
+        .evento-info {
+            flex: 1;
+        }
+
+        .evento-etiqueta {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-bronce);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .evento-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--color-crema);
+        }
+
+        .evento-info p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(244, 228, 215, 0.7);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Botón de acción */
+        .btn-reservar {
+            background: transparent;
+            border: 1px solid var(--color-bronce);
+            color: var(--color-crema);
+            padding: 12px 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-family: var(--font-cuerpo);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        .btn-reservar:hover {
+            background: var(--color-bronce);
+            color: var(--color-vino);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 20px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 20px; }
+            
+            .evento-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .evento-fecha {
+                flex: none;
+                border-right: none;
+                border-bottom: 1px solid rgba(197, 160, 133, 0.2);
+                padding-right: 0;
+                margin-right: 0;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header>
+        <div class="logo">ONNA</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="terapias.html">Terapias</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CABECERA -->
+    <section class="header-pagina">
+        <h1>Encuentros <i>ONNA</i></h1>
+        <p>Un espacio donde la sexualidad no se reprime, sino que se comparte. Únete a nuestras masterclass y experiencias vivenciales para reconectar en comunidad.</p>
+    </section>
+
+    <!-- AGENDA DE EVENTOS -->
+    <section class="agenda-contenedor">
+
+        <!-- EVENTO 1 -->
+        <article class="evento-card">
+            <div class="evento-fecha">
+                <div class="dia">15</div>
+                <div class="mes">Noviembre</div>
+            </div>
+            <div class="evento-info">
+                <span class="evento-etiqueta">✦ Masterclass Online</span>
+                <h3>El origen de la energía creativa</h3>
+                <p>Un espacio de formación accesible para comprender cómo canalizar la energía sexual hacia nuestra creatividad y afectividad. Sesión en vivo vía Zoom.</p>
+                <a href="#" class="btn-reservar">Reservar Espacio</a>
+            </div>
+        </article>
+
+        <!-- EVENTO 2 -->
+        <article class="evento-card">
+            <div class="evento-fecha">
+                <div class="dia">28</div>
+                <div class="mes">Noviembre</div>
+            </div>
+            <div class="evento-info">
+                <span class="evento-etiqueta">✦ Taller Presencial</span>
+                <h3>Reconectar con el cuerpo</h3>
+                <p>Experiencia vivencial en un entorno de confianza. Trabajaremos dinámicas corporales para sanar bloqueos y abrazar el deseo como una expresión auténtica.</p>
+                <a href="#" class="btn-reservar">Ver Detalles</a>
+            </div>
+        </article>
+
+        <!-- EVENTO 3 -->
+        <article class="evento-card">
+            <div class="evento-fecha">
+                <div class="dia">10</div>
+                <div class="mes">Diciembre</div>
+            </div>
+            <div class="evento-info">
+                <span class="evento-etiqueta">✦ Retiro / Taller</span>
+                <h3>Sanando la Niña Interior</h3>
+                <p>Acompañamiento profundo guiado para sanar heridas emocionales que impactan nuestra manera de relacionarnos en pareja y con nosotros mismos.</p>
+                <a href="#" class="btn-reservar">Lista de Espera</a>
+            </div>
+        </article>
+
+    </section>
+
+</body>
+</html>
